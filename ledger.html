@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ledger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .courses-table.centered-table {
+      margin-left: auto;
+      margin-right: auto;
+      display: table;
+    }
+  </style>
+</head>
+<body>
+  <style>
+    html, body {
+      height: 100%;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1 0 auto;
+    }
+    .footer {
+      flex-shrink: 0;
+    }
+  </style>
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-left: 32px; background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%); box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07); width: 100vw; margin-left: calc(-50vw + 50%);">
+    <div style="display: flex; align-items: center;">
+      <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <span style="font-size:1.1em; font-weight:bold; letter-spacing:1px;">STUDENT PORTAL</span>
+        <h1 style="margin: 0;">Ledger</h1>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px; margin-right: 32px;">
+      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon" style="height: 48px; width: 48px; border-radius: 50%; background: #fff; padding: 4px; box-shadow: 0 1px 4px rgba(44,62,80,0.10);">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; color: #fff;">
+        <span style="font-weight: bold; font-size: 1.05em;">RANDY JOHN MERCA</span>
+        <span style="font-size: 0.95em; opacity: 0.85; text-align: left; width: 100%;">UA202200203</span>
+      </div>
+      <button style="background: #fff; color: #3867d6; border: none; border-radius: 5px; padding: 8px 18px; font-weight: bold; cursor: pointer; transition: background 0.2s, color 0.2s;">Logout</button>
+    </div>
+  </header>
+  <nav>
+  <a href="courses.html" class="nav-link">Courses</a>
+  <a href="grades.html" class="nav-link">Grades</a>
+  <a href="profile.html" class="nav-link">Profile</a>
+  <a href="ledger.html" class="nav-link">Ledger</a>
+  <a href="account.html" class="nav-link">Account</a>
+  </nav>
+  <main>
+    <h2>Student Ledger</h2>
+    <p>View your financial transactions and balances here.</p>
+  <!-- Student Permit button moved below table -->
+    <div id="permitWrap" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(44,62,80,0.25); z-index:1000; justify-content:center; align-items:center;">
+      <div style="background:#fff; border-radius:12px; box-shadow:0 4px 32px rgba(44,62,80,0.18); padding:32px 24px; max-width:400px; width:90vw; text-align:center; position:relative;">
+        <h3 style="color:#3867d6; margin-top:0;">Student Permit</h3>
+        <p style="margin-bottom:18px;">This is your official student permit for the current semester.</p>
+        <p><strong>Name:</strong> RANDY JOHN MERCA</p>
+        <p><strong>Student No:</strong> UA202200203</p>
+        <p><strong>Semester:</strong> 1st Semester 2025-2026</p>
+        <button id="closePermit" style="background:#3867d6; color:#fff; border:none; border-radius:5px; padding:8px 18px; font-weight:bold; margin-top:18px; cursor:pointer;">Close</button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="courses-table centered-table">
+      <thead>
+        <tr>
+          <th>Reference No.</th>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Debit</th>
+          <th>Credit</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LED-2025-001</td>
+          <td>2025-06-01</td>
+          <td>Tuition Fee</td>
+          <td>₱10,000.00</td>
+          <td></td>
+          <td>₱10,000.00</td>
+        </tr>
+        <tr>
+          <td>LED-2025-002</td>
+          <td>2025-06-10</td>
+          <td>Payment - Cash</td>
+          <td></td>
+          <td>₱5,000.00</td>
+          <td>₱5,000.00</td>
+        </tr>
+        <tr>
+         <td>LED-2025-002</td>
+          <td>2025-07-01</td>
+          <td>Library Fee</td>
+          <td>₱500.00</td>
+          <td></td>
+          <td>₱5,500.00</td>
+        </tr>
+        <tr>
+            <td>LED-2025-002</td>
+          <td>2025-07-15</td>
+          <td>Payment - Online</td>
+          <td></td>
+          <td>₱2,000.00</td>
+          <td>₱3,500.00</td>
+        </tr>
+        <tr style="font-weight: bold; background: #d4eafd;">
+          <td colspan="2" style="text-align:right;">Total</td>
+          <td>₱10,500.00</td>
+          <td>₱7,000.00</td>
+          <td>₱3,500.00</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <button id="permitBtn" style="background: #3867d6; color: #fff; border: none; border-radius: 6px; padding: 10px 28px; font-weight: bold; font-size: 1em; margin: 24px auto 0 auto; display: block; cursor: pointer; box-shadow: 0 2px 8px rgba(44,62,80,0.10); transition: background 0.2s, color 0.2s;">Student Permit</button>
+  <a href="index.html" class="back-home-link">&larr; Back to Home</a>
+  </main>
+  <footer class="footer">
+  <script>
+    document.getElementById('permitBtn').onclick = function() {
+      document.getElementById('permitWrap').style.display = 'flex';
+    };
+    document.getElementById('closePermit').onclick = function() {
+      document.getElementById('permitWrap').style.display = 'none';
+    };
+  </script>
+    <span>&copy; 2025 Student Portal. All rights reserved.</span>
+  </footer>
+</body>
+</html>

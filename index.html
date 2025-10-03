@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-left: 32px; background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%); box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07); width: 100vw; margin-left: calc(-50vw + 50%);">
+      <div style="display: flex; align-items: center;">
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+          <span style="font-size:1.1em; font-weight:bold; letter-spacing:1px;">STUDENT PORTAL</span>
+          <h1 style="margin: 0;">Dashboard</h1>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; margin-right: 32px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon" style="height: 48px; width: 48px; border-radius: 50%; background: #fff; padding: 4px; box-shadow: 0 1px 4px rgba(44,62,80,0.10);">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; color: #fff;">
+          <span style="font-weight: bold; font-size: 1.05em;">RANDY JOHN MERCA</span>
+          <span style="font-size: 0.95em; opacity: 0.85; text-align: left; width: 100%;">UA202200203</span>
+        </div>
+        <button style="background: #fff; color: #3867d6; border: none; border-radius: 5px; padding: 8px 18px; font-weight: bold; cursor: pointer; transition: background 0.2s, color 0.2s;">Logout</button>
+      </div>
+    </header>
+    <nav>
+          <!-- Dashboard link removed; index.html is now the dashboard -->
+  <a href="courses.html" class="nav-link">Courses</a>
+  <a href="grades.html" class="nav-link">Grades</a>
+  <a href="profile.html" class="nav-link">Profile</a>
+  <a href="ledger.html" class="nav-link">Ledger</a>
+  <a href="account.html" class="nav-link">Account</a>
+    </nav>
+    <main>
+  <h2 id="welcome">Welcome to the Student Portal</h2>
+  <p>Select a section from the navigation above to get started.</p>
+  <img src="poster.png" alt="Portal Poster" style="max-width: 350px; width: 100%; height: auto; display: block; margin: 24px auto 0 auto; border-radius: 12px; box-shadow: 0 2px 12px rgba(44,62,80,0.10);">
+    </main>
+    <script>
+      // Highlight active nav link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // Personalized welcome message
+      const name = localStorage.getItem('studentName') || 'Student';
+      document.getElementById('welcome').textContent = `Welcome, ${name}!`;
+
+      // Prompt for name if not set
+      if (!localStorage.getItem('studentName')) {
+        setTimeout(() => {
+          const userName = prompt('Enter your name:');
+          if (userName) {
+            localStorage.setItem('studentName', userName);
+            document.getElementById('welcome').textContent = `Welcome, ${userName}!`;
+          }
+        }, 500);
+      }
+    </script>
+    <footer class="footer">
+      <span>&copy; 2025 Student Portal. All rights reserved.</span>
+    </footer>
+  </body>
+  </html>

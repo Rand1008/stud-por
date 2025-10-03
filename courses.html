@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      overflow-x: hidden;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <title>Courses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .courses-table.centered-table {
+      margin-left: auto;
+      margin-right: auto;
+      display: table;
+    }
+  </style>
+</head>
+<body>
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-left: 32px; background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%); box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07); width: 100vw; margin-left: calc(-50vw + 50%);">
+    <div style="display: flex; align-items: center;">
+      <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <span style="font-size:1.1em; font-weight:bold; letter-spacing:1px;">STUDENT PORTAL</span>
+        <h1 style="margin: 0;">Courses</h1>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px; margin-right: 32px;">
+      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon" style="height: 48px; width: 48px; border-radius: 50%; background: #fff; padding: 4px; box-shadow: 0 1px 4px rgba(44,62,80,0.10);">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; color: #fff;">
+        <span style="font-weight: bold; font-size: 1.05em;">RANDY JOHN MERCA</span>
+          <span style="font-size: 0.95em; opacity: 0.85; text-align: left; width: 100%;">UA202200203</span>
+      </div>
+      <button style="background: #fff; color: #3867d6; border: none; border-radius: 5px; padding: 8px 18px; font-weight: bold; cursor: pointer; transition: background 0.2s, color 0.2s;">Logout</button>
+    </div>
+  </header>
+  <nav>
+          <!-- Dashboard link removed; index.html is now the dashboard -->
+  <a href="courses.html" class="nav-link">Courses</a>
+  <a href="grades.html" class="nav-link">Grades</a>
+  <a href="profile.html" class="nav-link">Profile</a>
+  <a href="ledger.html" class="nav-link">Ledger</a>
+  <a href="account.html" class="nav-link">Account</a>
+  </nav>
+  <main>
+    <h2>Your Enrolled Courses</h2>
+    <p>List and manage your courses here.</p>
+  <div class="table-responsive">
+    <table class="courses-table centered-table">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Section</th>
+          <th>Lab Unit</th>
+          <th>Lec Units</th>
+          <th>Days</th>
+          <th>Time</th>
+          <th>Room</th>
+          <th>Professor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SA01</td>
+          <td>LFAU411A075</td>
+          <td>1</td>
+          <td>3</td>
+          <td>Wed/Sat</td>
+          <td>3:00-4:30</td>
+          <td>B1.29</td>
+          <td>Mr. Chiong</td>
+        </tr>
+        <tr>
+          <td>IPT2</td>
+          <td>LFAU411A075</td>
+          <td>1</td>
+          <td>3</td>
+          <td>Wed/Sat</td>
+          <td>4:30-6:00</td>
+          <td>B1.29</td>
+          <td>Mr. Chiong</td>
+        </tr>
+        <tr>
+          <td>itprac-1</td>
+          <td>LFAU411A075</td>
+          <td>0</td>
+          <td>3</td>
+          <td>Sun</td>
+          <td>3:00-4:30</td>
+          <td>-</td>
+          <td>Mr. Vilog</td>
+        </tr>
+        <tr>
+          <td>itpract-2</td>
+          <td>LFAU411A075</td>
+          <td>0</td>
+          <td>3</td>
+          <td>Sun</td>
+          <td>4:30-6:00</td>
+          <td>-</td>
+          <td>Mr. Vilog</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </main>
+  <a href="./index.html">Back to Home</a>
+</main>
+<footer class="footer">
+  <span>&copy; 2025 Student Portal. All rights reserved.</span>
+</footer>
+</body>
+</html>

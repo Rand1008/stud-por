@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    html, body {
+      height: 100%;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1 0 auto;
+    }
+    .footer {
+      flex-shrink: 0;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <title>Account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-left: 32px; background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%); box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07); width: 100vw; margin-left: calc(-50vw + 50%);">
+    <div style="display: flex; align-items: center;">
+      <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <span style="font-size:1.1em; font-weight:bold; letter-spacing:1px;">STUDENT PORTAL</span>
+        <h1 style="margin: 0;">Account</h1>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px; margin-right: 32px;">
+      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon" style="height: 48px; width: 48px; border-radius: 50%; background: #fff; padding: 4px; box-shadow: 0 1px 4px rgba(44,62,80,0.10);">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; color: #fff;">
+        <span style="font-weight: bold; font-size: 1.05em;">RANDY JOHN MERCA</span>
+        <span style="font-size: 0.95em; opacity: 0.85; text-align: left; width: 100%;">UA202200203</span>
+      </div>
+      <button style="background: #fff; color: #3867d6; border: none; border-radius: 5px; padding: 8px 18px; font-weight: bold; cursor: pointer; transition: background 0.2s, color 0.2s;">Logout</button>
+    </div>
+  </header>
+  <nav>
+    <a href="courses.html" class="nav-link">Courses</a>
+    <a href="grades.html" class="nav-link">Grades</a>
+    <a href="profile.html" class="nav-link">Profile</a>
+    <a href="ledger.html" class="nav-link">Ledger</a>
+    <a href="account.html" class="nav-link active">Account</a>
+  </nav>
+  <main>
+    <h2>Account Information</h2>
+    <form class="account-form" id="accountForm">
+      <div class="account-row">
+        <div>
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+      </div>
+      <div class="account-row">
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter new password">
+        </div>
+        <div>
+          <label for="studentno">Student Number</label>
+          <input type="text" id="studentno" name="studentno" placeholder="Enter your student number" required>
+        </div>
+      </div>
+      <button type="submit">Save Changes</button>
+      <div id="saveMsg" style="display:none; color:#27ae60; font-weight:bold; margin-top:10px; text-align:center;">Account updated!</div>
+    </form>
+    <script>
+      // Load saved account info if available
+      window.addEventListener('DOMContentLoaded', function() {
+        const data = JSON.parse(localStorage.getItem('accountInfo') || '{}');
+        if(data.fullname) document.getElementById('fullname').value = data.fullname;
+        if(data.email) document.getElementById('email').value = data.email;
+        if(data.studentno) document.getElementById('studentno').value = data.studentno;
+        // Do not prefill password for security
+      });
+      document.getElementById('accountForm').onsubmit = function(e) {
+        e.preventDefault();
+        const data = {
+          fullname: document.getElementById('fullname').value,
+          email: document.getElementById('email').value,
+          studentno: document.getElementById('studentno').value
+        };
+        localStorage.setItem('accountInfo', JSON.stringify(data));
+        document.getElementById('saveMsg').style.display = 'block';
+        setTimeout(()=>{document.getElementById('saveMsg').style.display = 'none';}, 2000);
+        document.getElementById('password').value = '';
+      };
+    </script>
+  </main>
+  <footer class="footer">
+    <span>&copy; 2025 ICCT Colleges Student Portal. All rights reserved.</span>
+  </footer>
+</body>
+</html>
