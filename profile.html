@@ -5,20 +5,43 @@
   <title>Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Keep space for a fixed footer so it doesn't overlap content */
+    body { padding-bottom: 72px; }
+
+    /* Footer fixed to the bottom of the viewport */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%);
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 -2px 6px rgba(44,62,80,0.06);
+      z-index: 999;
+    }
+  </style>
 </head>
 <body>
-  <header style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-left: 32px; background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%); box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07); width: 100vw; margin-left: calc(-50vw + 50%);">
-    <div style="display: flex; align-items: center;">
-      <div style="display: flex; flex-direction: column; align-items: flex-start;">
-        <span style="font-size:1.1em; font-weight:bold; letter-spacing:1px;">STUDENT PORTAL</span>
-        <h1 style="margin: 0;">Profile</h1>
-      </div>
+  <header style="display: flex; align-items: center; gap: 18px; padding-left: 32px; background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%); box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07); width: 100vw; margin-left: calc(-50vw + 50%);">
+    <div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: flex-start;">
+      <span style="font-size:1.1em; font-weight:bold; letter-spacing:1px;">STUDENT PORTAL</span>
+      <span id="workingTime" style="font-size:0.98em; color:#eaf3fb; margin-top:2px; letter-spacing:0.5px;"></span>
     </div>
-    <div style="display: flex; align-items: center; gap: 16px; margin-right: 32px;">
+    <div style="flex: 2 1 0; display: flex; justify-content: center; align-items: center;">
+      <h1 style="margin: 0; font-size: 2.2em; font-weight: bold; color: #fff; line-height: 1;">Profile</h1>
+    </div>
+    <div style="flex: 1 1 0; display: flex; align-items: center; gap: 16px; justify-content: flex-end; margin-right: 32px;">
+      <button id="notifBtn" style="background: #fff; color: #3867d6; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.3em; margin-right: 10px; position: relative; cursor: pointer; box-shadow: 0 1px 4px rgba(44,62,80,0.10);">
+        <span id="notifIcon">🔔</span>
+        <span id="notifBadge" style="position: absolute; top: 4px; right: 4px; background: #e74c3c; color: #fff; border-radius: 50%; font-size: 0.8em; padding: 2px 6px; display: none;">1</span>
+      </button>
       <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon" style="height: 48px; width: 48px; border-radius: 50%; background: #fff; padding: 4px; box-shadow: 0 1px 4px rgba(44,62,80,0.10);">
-      <div style="display: flex; flex-direction: column; align-items: flex-start; color: #fff;">
-        <span style="font-weight: bold; font-size: 1.05em;">RANDY JOHN MERCA</span>
-        <span style="font-size: 0.95em; opacity: 0.85; text-align: left; width: 100%;">UA202200203</span>
+      <div style="display: flex; flex-direction: column; align-items: flex-start; color: #fff; line-height: 1.1;">
+        <span style="font-weight: bold; font-size: 1.05em; white-space: nowrap;">RANDY JOHN MERCA</span>
+        <span style="font-size: 0.95em; opacity: 0.85; white-space: nowrap;">UA202200203</span>
       </div>
       <button style="background: #fff; color: #3867d6; border: none; border-radius: 5px; padding: 8px 18px; font-weight: bold; cursor: pointer; transition: background 0.2s, color 0.2s;">Logout</button>
     </div>
@@ -203,8 +226,170 @@
   </div>
   <a href="./index.html">Back to Home</a>
 </main>
-<footer class="footer">
-  <span>&copy; 2025 Student Portal. All rights reserved.</span>
-</footer>
-</body>
-</html>
+  <footer class="footer">
+    <span>&copy; 2025 Student Portal. All rights reserved.</span>
+  </footer>
+<!-- Notification Modal (single, correct) -->
+<div id="notifWrap" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(44,62,80,0.18); z-index:1000; justify-content:center; align-items:center;">
+  <div id="notifModal" style="background:#fff; border-radius:18px; box-shadow:0 8px 40px rgba(44,62,80,0.18); padding:0; max-width:720px; width:96vw; min-height:340px; display:flex; flex-direction:row; overflow:hidden; position:relative; border: 1.5px solid #e3e8ee;">
+    <div id="notifInbox" style="flex:1 1 0; min-width:220px; max-width:320px; background:linear-gradient(135deg,#f5fafd 80%,#eaf3fb 100%); padding:32px 0 18px 0; border-right:1.5px solid #e3e8ee; z-index:2; box-shadow: 2px 0 12px rgba(44,62,80,0.04); display: flex; flex-direction: column; align-items: stretch;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin:0 18px 18px 24px;">
+        <h3 style="color:#3867d6; margin:0; font-size:1.18em; letter-spacing:1px;">Notifications</h3>
+        <button id="notifReadAllBtn" style="background:#eaf3fb; color:#3867d6; border:1.5px solid #3867d6; border-radius:5px; padding:5px 16px; font-weight:bold; cursor:pointer; font-size:0.98em; margin-left:12px; transition:background 0.2s, color 0.2s; display:block;">Read All</button>
+      </div>
+      <ul id="notifList" style="list-style:none; padding:0 0 0 12px; margin:0 0 18px 0;"></ul>
+    </div>
+    <div id="notifDetail" style="flex:2 1 0; min-width:0; padding:36px 32px; display:none; flex-direction:column; align-items:flex-start; justify-content:flex-start; text-align:left; min-height:340px; background:linear-gradient(135deg,#fff 80%,#f5fafd 100%); box-shadow: -2px 0 12px rgba(44,62,80,0.04); border-left:1.5px solid #e3e8ee; position:relative;">
+      <button id="notifBackBtn" style="position:absolute; top:18px; left:18px; background:#3867d6; color:#fff; border:none; border-radius:5px; padding:7px 20px; font-weight:bold; cursor:pointer; margin-bottom:18px; box-shadow:0 2px 8px rgba(44,62,80,0.10);">Back</button>
+      <div id="notifDetailContent" style="margin-top:32px; width:100%; text-align:center;"></div>
+    </div>
+    <button id="closeNotif" style="position:absolute; top:18px; right:24px; background:#fff; color:#3867d6; border:1.5px solid #3867d6; border-radius:5px; padding:5px 16px; font-weight:bold; cursor:pointer; box-shadow:0 2px 8px rgba(44,62,80,0.10); transition:background 0.2s, color 0.2s;">Close</button>
+  </div>
+</div>
+          </div>
+          <ul id="notifList" style="list-style:none; padding:0 0 0 12px; margin:0 0 18px 0;"></ul>
+        </div>
+        <div id="notifDetail" style="flex:2 1 0; min-width:0; padding:36px 32px; display:none; flex-direction:column; align-items:flex-start; justify-content:flex-start; text-align:left; min-height:340px; background:linear-gradient(135deg,#fff 80%,#f5fafd 100%); box-shadow: -2px 0 12px rgba(44,62,80,0.04); border-left:1.5px solid #e3e8ee; position:relative;">
+          <button id="notifBackBtn" style="position:absolute; top:18px; left:18px; background:#3867d6; color:#fff; border:none; border-radius:5px; padding:7px 20px; font-weight:bold; cursor:pointer; margin-bottom:18px; box-shadow:0 2px 8px rgba(44,62,80,0.10);">Back</button>
+          <div id="notifDetailContent" style="margin-top:32px; width:100%; text-align:center;"></div>
+    </div>
+    <script>
+    // Live working time and date below STUDENT PORTAL
+    function updateWorkingTime() {
+      const el = document.getElementById('workingTime');
+      if (!el) return;
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateStr = now.toLocaleDateString(undefined, options);
+      const timeStr = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      el.textContent = `${dateStr} | ${timeStr}`;
+    }
+    setInterval(updateWorkingTime, 1000);
+    updateWorkingTime();
+    </script>
+    <script>
+    // --- Notification System (shared) ---
+    const defaultNotifs = [
+      { id: 1, text: 'Your payment is due.', read: false, date: '2025-10-05', title: 'Payment Due', body: 'Please settle your outstanding balance to avoid penalties. Visit the ledger page for more details.' },
+      { id: 2, text: 'Welcome to the portal!', read: true, date: '2025-10-01', title: 'Welcome!', body: 'Thank you for joining the student portal. Explore your courses, grades, and more.' }
+    ];
+    function getNotifs() {
+      let notifs = [];
+      try {
+        notifs = JSON.parse(localStorage.getItem('notifications'));
+      } catch {}
+      if (!Array.isArray(notifs) || notifs.some(n => !('title' in n && 'date' in n && 'body' in n))) {
+        notifs = defaultNotifs;
+        localStorage.setItem('notifications', JSON.stringify(defaultNotifs));
+      } else {
+        notifs = notifs.map((n,i) => ({
+          id: n.id || i+1,
+          text: n.text,
+          read: !!n.read,
+          title: n.title || n.text,
+          date: n.date || '2025-10-05',
+          body: n.body || ''
+        }));
+        localStorage.setItem('notifications', JSON.stringify(notifs));
+      }
+      return notifs;
+    }
+    function saveNotifs(notifs) {
+      localStorage.setItem('notifications', JSON.stringify(notifs));
+    }
+    function updateNotifBadge() {
+      const notifs = getNotifs();
+      const unread = notifs.filter(n => !n.read).length;
+      const badge = document.getElementById('notifBadge');
+      badge.textContent = unread;
+      badge.style.display = unread > 0 ? 'inline-block' : 'none';
+    }
+    function renderNotifList() {
+      const notifs = getNotifs();
+      const ul = document.getElementById('notifList');
+      ul.innerHTML = '';
+      if (notifs.length === 0) {
+        ul.innerHTML = '<li style="color:#888; padding:18px 0;">No notifications.</li>';
+      } else {
+        notifs.forEach(n => {
+          const li = document.createElement('li');
+          li.style.marginBottom = '10px';
+          li.style.display = 'flex';
+          li.style.alignItems = 'center';
+          li.style.justifyContent = 'space-between';
+          li.style.cursor = 'pointer';
+          li.style.padding = '12px 18px 12px 8px';
+          li.style.borderRadius = '7px';
+          li.style.transition = 'background 0.18s';
+          li.style.boxShadow = n.read ? 'none' : '0 2px 8px rgba(56,103,214,0.07)';
+          li.style.background = n.read ? 'transparent' : 'rgba(56,103,214,0.07)';
+          li.setAttribute('data-id', n.id);
+          li.innerHTML = `<span style="${n.read ? 'color:#888;' : 'font-weight:bold;'}">${n.text}</span>` +
+            (!n.read ? `<button data-id="${n.id}" class="markReadBtn" style="margin-left:18px; background:#3867d6; color:#fff; border:none; border-radius:4px; padding:4px 12px; font-size:0.95em; cursor:pointer; box-shadow:0 1px 4px rgba(44,62,80,0.10);">Mark as Read</button>` : '');
+          li.onmouseenter = () => { li.style.background = 'rgba(56,103,214,0.13)'; };
+          li.onmouseleave = () => { li.style.background = n.read ? 'transparent' : 'rgba(56,103,214,0.07)'; };
+          ul.appendChild(li);
+        });
+      }
+    }
+    document.getElementById('notifBtn').onclick = function() {
+      renderNotifList();
+      document.getElementById('notifWrap').style.display = 'flex';
+      document.getElementById('notifReadAllBtn').style.display = 'block';
+    };
+    document.getElementById('closeNotif').onclick = function() {
+      document.getElementById('notifWrap').style.display = 'none';
+    };
+    document.getElementById('notifList').onclick = function(e) {
+      if (e.target.classList.contains('markReadBtn') && e.target.dataset.id) {
+        const id = parseInt(e.target.dataset.id);
+        let notifs = getNotifs();
+        notifs = notifs.map(n => n.id === id ? { ...n, read: true } : n);
+        saveNotifs(notifs);
+        renderNotifList();
+        updateNotifBadge();
+        e.stopPropagation();
+        return;
+      }
+      let li = e.target;
+      while (li && li.tagName !== 'LI') li = li.parentElement;
+      if (li && li.dataset.id) {
+        showNotifDetail(li.dataset.id);
+      }
+    };
+    function showNotifDetail(id) {
+      document.getElementById('notifInbox').style.display = 'block';
+      const detail = document.getElementById('notifDetail');
+      detail.style.display = 'flex';
+      detail.scrollTop = 0;
+      document.getElementById('notifBackBtn').style.display = 'inline-block';
+      document.getElementById('notifReadAllBtn').style.display = 'none';
+      const notifs = getNotifs();
+      const notif = notifs.find(n => n.id == id);
+      if (!notif) return;
+      document.getElementById('notifDetailContent').innerHTML = `
+        <h2 style='color:#3867d6; margin-bottom:8px;'>${notif.title}</h2>
+        <div style='color:#888; font-size:0.98em; margin-bottom:18px;'>${notif.date}</div>
+        <div style='font-size:1.1em; margin-bottom:18px;'>${notif.body || notif.text}</div>
+      `;
+    }
+    document.getElementById('notifBackBtn').onclick = function() {
+      document.getElementById('notifInbox').style.display = 'block';
+      document.getElementById('notifDetail').style.display = 'none';
+      document.getElementById('notifReadAllBtn').style.display = 'block';
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+      const readAllBtn = document.getElementById('notifReadAllBtn');
+      if (readAllBtn) {
+        readAllBtn.onclick = function() {
+          let notifs = getNotifs();
+          notifs = notifs.map(n => ({ ...n, read: true }));
+          saveNotifs(notifs);
+          renderNotifList();
+          updateNotifBadge();
+        };
+      }
+      updateNotifBadge();
+    });
+    </script>
+    </html>
