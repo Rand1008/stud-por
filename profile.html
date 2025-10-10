@@ -22,6 +22,33 @@
       box-shadow: 0 -2px 6px rgba(44,62,80,0.06);
       z-index: 999;
     }
+    .profile-nav-btn {
+      background: linear-gradient(90deg, #3867d6 60%, #2d98da 100%);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 10px 32px;
+      font-size: 1.08em;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+      outline: none;
+    }
+    .profile-nav-btn:not(:last-child) {
+      margin-right: 8px;
+    }
+    .profile-nav-btn.active,
+    .profile-nav-btn:focus {
+      background: linear-gradient(90deg, #2d98da 60%, #3867d6 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(44,62,80,0.18);
+    }
+    .profile-nav-btn:hover {
+      background: linear-gradient(90deg, #3867d6 60%, #2d98da 100%);
+      color: #eaf3fb;
+    }
   </style>
 </head>
 <body>
@@ -56,172 +83,79 @@
   </nav>
   <main>
   <div class="main-wrap">
-    <div class="profile-section">
-      <h3>Educational Information</h3>
-      <div class="profile-row">
-        <div class="profile-field">
-          <label>Level</label>
-          <div class="profile-value">Elementary</div>
-        </div>
-        <div class="profile-field">
-          <label>School Name</label>
-          <div class="profile-value">Dona Nieves Songco Elementary School</div>
-        </div>
-        <div class="profile-field">
-          <label>Address</label>
-          <div class="profile-value">ML Q. Street, Mahabang Parang, Angono, Rizal</div>
-        </div>
-        <div class="profile-field">
-          <label>Year Graduated</label>
-          <div class="profile-value">2016</div>
-        </div>
-        <div class="profile-field">
-          <label>Awards/Recognition</label>
-          <div class="profile-value">N/A</div>
+      <div style="display:flex; gap:16px; justify-content:center; margin-bottom:24px;">
+        <button class="profile-nav-btn" data-section="education">Education</button>
+        <button class="profile-nav-btn" data-section="personal">Personal</button>
+        <button class="profile-nav-btn" data-section="other">Other</button>
+      </div>
+      <div id="profile-education" class="profile-group">
+        <div class="profile-section">
+          <h3>Educational Information</h3>
+          <div class="profile-row">
+            <div class="profile-field"><label>Level</label><div class="profile-value">Elementary</div></div>
+            <div class="profile-field"><label>School Name</label><div class="profile-value">Dona Nieves Songco Elementary School</div></div>
+            <div class="profile-field"><label>Address</label><div class="profile-value">ML Q. Street, Mahabang Parang, Angono, Rizal</div></div>
+            <div class="profile-field"><label>Year Graduated</label><div class="profile-value">2016</div></div>
+            <div class="profile-field"><label>Awards/Recognition</label><div class="profile-value">N/A</div></div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-field"><label>Level</label><div class="profile-value">Junior High School</div></div>
+            <div class="profile-field"><label>School Name</label><div class="profile-value">Botong V. Francisco Memorial National High School</div></div>
+            <div class="profile-field"><label>Address</label><div class="profile-value">Apple Street, Mahabang Parang, Angono, Rizal</div></div>
+            <div class="profile-field"><label>Year Graduated</label><div class="profile-value">2020</div></div>
+            <div class="profile-field"><label>Awards/Recognition</label><div class="profile-value">N/A</div></div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-field"><label>Level</label><div class="profile-value">Senior High School</div></div>
+            <div class="profile-field"><label>School Name</label><div class="profile-value">Sumulong College of Arts And Sciences</div></div>
+            <div class="profile-field"><label>Address</label><div class="profile-value">ML Q. Ext., Antipolo, Rizal</div></div>
+            <div class="profile-field"><label>Year Graduated</label><div class="profile-value">2022</div></div>
+            <div class="profile-field"><label>Awards/Recognition</label><div class="profile-value">With Honors</div></div>
+          </div>
         </div>
       </div>
-      <div class="profile-row">
-        <div class="profile-field">
-          <label>Level</label>
-          <div class="profile-value">Junior High School</div>
-        </div>
-        <div class="profile-field">
-          <label>School Name</label>
-          <div class="profile-value">Botong V. Francisco Memorial National High School</div>
-        </div>
-        <div class="profile-field">
-          <label>Address</label>
-          <div class="profile-value">Apple Street, Mahabang Parang, Angono, Rizal</div>
-        </div>
-        <div class="profile-field">
-          <label>Year Graduated</label>
-          <div class="profile-value">2020</div>
-        </div>
-        <div class="profile-field">
-          <label>Awards/Recognition</label>
-          <div class="profile-value">N/A</div>
-        </div>
-      </div>
-      <div class="profile-row">
-        <div class="profile-field">
-          <label>Level</label>
-          <div class="profile-value">Senior High School</div>
-        </div>
-        <div class="profile-field">
-          <label>School Name</label>
-          <div class="profile-value">Sumulong College of Arts And Sciences</div>
-        </div>
-        <div class="profile-field">
-          <label>Address</label>
-          <div class="profile-value">ML Q. Ext., Antipolo, Rizal</div>
-        </div>
-        <div class="profile-field">
-          <label>Year Graduated</label>
-          <div class="profile-value">2022</div>
-        </div>
-        <div class="profile-field">
-          <label>Awards/Recognition</label>
-          <div class="profile-value">With Honors</div>
+      <div id="profile-personal" class="profile-group" style="display:none;">
+        <div class="profile-personal-wrap" style="display: flex; flex-direction: column; gap: 18px; flex-wrap: wrap;">
+          <div class="profile-section">
+            <h3>Student Details</h3>
+            <div class="profile-row">
+              <div class="profile-field"><label>Student ID</label><div class="profile-value">UA202200203</div></div>
+              <div class="profile-field"><label>Course</label><div class="profile-value">BS Information Technology</div></div>
+              <div class="profile-field"><label>Year Level</label><div class="profile-value">4th Year</div></div>
+              <div class="profile-field"><label>Email</label><div class="profile-value">mercarandyjohn@gmail.com</div></div>
+            </div>
+            <h3>Personal Data</h3>
+            <div class="profile-row">
+              <div class="profile-field"><label>First Name</label><div class="profile-value">RANDY JOHN</div></div>
+              <div class="profile-field"><label>Middle Name</label><div class="profile-value">CALLES</div></div>
+              <div class="profile-field"><label>Last Name</label><div class="profile-value">MERCA</div></div>
+              <div class="profile-field"><label>Suffix</label><div class="profile-value">-</div></div>
+            </div>
+            <h3>Home Address</h3>
+            <div class="profile-row">
+              <div class="profile-field"><label>Province</label><div class="profile-value">RIZAL</div></div>
+              <div class="profile-field"><label>City/Municipality</label><div class="profile-value">ANGONO</div></div>
+              <div class="profile-field"><label>Barangay</label><div class="profile-value">Mahabang Parang</div></div>
+              <div class="profile-field"><label>Purok/Zone</label><div class="profile-value">PUROK 8 ZONE 2 SILIHAN</div></div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="profile-section">
-      <h3>Educational Information</h3>
-      <div class="profile-row">
-        <div class="profile-field">
-          <label>Student ID</label>
-          <div class="profile-value">UA202200203</div>
-        </div>
-        <div class="profile-field">
-          <label>Course</label>
-          <div class="profile-value">BS Information Technology</div>
-        </div>
-        <div class="profile-field">
-          <label>Year Level</label>
-          <div class="profile-value">4th Year</div>
-        </div>
-        <div class="profile-field">
-          <label>Email</label>
-          <div class="profile-value">mercarandyjohn@gmail.com</div>
+      <div id="profile-other" class="profile-group" style="display:none;">
+        <div class="profile-section">
+          <h3>Other Data</h3>
+          <div class="profile-row">
+            <div class="profile-field"><label>Date of Birth</label><div class="profile-value">Jun 09, 2004</div></div>
+            <div class="profile-field"><label>Place of Birth</label><div class="profile-value">BAGONG SILANG, CALOOCAN PHILIPPINES</div></div>
+            <div class="profile-field"><label>Citizenship</label><div class="profile-value">FILIPINO</div></div>
+            <div class="profile-field"><label>Sex</label><div class="profile-value">MALE</div></div>
+            <div class="profile-field"><label>Age</label><div class="profile-value">21</div></div>
+            <div class="profile-field"><label>Religion</label><div class="profile-value">Roman Catholic</div></div>
+            <div class="profile-field"><label>Status</label><div class="profile-value">Single</div></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="profile-section">
-      <h3>Personal Data</h3>
-      <div class="profile-row">
-        <div class="profile-field">
-          <label>First Name</label>
-          <div class="profile-value">RANDY JOHN</div>
-        </div>
-        <div class="profile-field">
-          <label>Middle Name</label>
-          <div class="profile-value">CALLES</div>
-        </div>
-        <div class="profile-field">
-          <label>Last Name</label>
-          <div class="profile-value">MERCA</div>
-        </div>
-        <div class="profile-field">
-          <label>Suffix</label>
-          <div class="profile-value">-</div>
-        </div>
-      </div>
-    </div>
-    <div class="profile-section">
-      <h3>Home Address</h3>
-      <div class="profile-row">
-        <div class="profile-field">
-          <label>Province</label>
-          <div class="profile-value">RIZAL</div>
-        </div>
-        <div class="profile-field">
-          <label>City/Municipality</label>
-          <div class="profile-value">ANGONO</div>
-        </div>
-        <div class="profile-field">
-          <label>Barangay</label>
-          <div class="profile-value">Mahabang Parang</div>
-        </div>
-        <div class="profile-field">
-          <label>Purok/Zone</label>
-          <div class="profile-value">PUROK 8 ZONE 2 SILIHAN</div>
-        </div>
-      </div>
-    </div>
-    <div class="profile-section">
-      <h3>Other Data</h3>
-      <div class="profile-row">
-        <div class="profile-field">
-          <label>Date of Birth</label>
-          <div class="profile-value">Jun 09, 2004</div>
-        </div>
-        <div class="profile-field">
-          <label>Place of Birth</label>
-          <div class="profile-value">BAGONG SILANG, CALOOCAN PHILIPPINES</div>
-        </div>
-        <div class="profile-field">
-          <label>Citizenship</label>
-          <div class="profile-value">FILIPINO</div>
-        </div>
-        <div class="profile-field">
-          <label>Sex</label>
-          <div class="profile-value">MALE</div>
-        </div>
-        <div class="profile-field">
-          <label>Age</label>
-          <div class="profile-value">21</div>
-        </div>
-        <div class="profile-field">
-          <label>Religion</label>
-          <div class="profile-value">Roman Catholic</div>
-        </div>
-        <div class="profile-field">
-          <label>Status</label>
-          <div class="profile-value">Single</div>
-        </div>
-      </div>
-    </div>
-  </div>
   </main>
   </div>
   <a href="./index.html">Back to Home</a>
@@ -254,6 +188,33 @@
           <div id="notifDetailContent" style="margin-top:32px; width:100%; text-align:center;"></div>
     </div>
     <script>
+       document.addEventListener('DOMContentLoaded', function() {
+      const btns = document.querySelectorAll('.profile-nav-btn');
+      const groups = {
+        education: document.getElementById('profile-education'),
+        personal: document.getElementById('profile-personal'),
+        other: document.getElementById('profile-other')
+      };
+      function setActive(section) {
+        btns.forEach(btn => {
+          if (btn.dataset.section === section) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+      btns.forEach(btn => {
+        btn.onclick = function() {
+          Object.keys(groups).forEach(key => {
+            groups[key].style.display = (btn.dataset.section === key) ? '' : 'none';
+          });
+          setActive(btn.dataset.section);
+        };
+      });
+      // Set initial active button
+      setActive('education');
+    });
     // Live working time and date below STUDENT PORTAL
     function updateWorkingTime() {
       const el = document.getElementById('workingTime');
@@ -393,3 +354,4 @@
     });
     </script>
     </html>
+
